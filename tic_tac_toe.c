@@ -13,14 +13,14 @@ void main() {
   char new_arr[][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}}; // array in which X and O are updated according to the number of block chosen from array 1
 
   // Loading the game 
-  // printf("Loading");
-  // for (int i=3; i>0; i--) {
-  //   Sleep(500);
-  //   printf("%c", '.');
-  // }
-  // Sleep(500);
-  // printf("\n\nBEGIN!\n");
-  // Sleep(500);
+  printf("Loading");
+  for (int i=3; i>0; i--) {
+    Sleep(500);
+    printf("%c", '.');
+  }
+  Sleep(500);
+  printf("\n\nBEGIN!\n");
+  Sleep(500);
 
   // Print initial grid
   printf("-------------\n");
