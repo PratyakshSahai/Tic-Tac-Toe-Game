@@ -39,8 +39,15 @@ void main() {
 
     if (xo == 'X') { 
       Repeat_x:
+      int ch;
       printf("Place X at position: ");
-      scanf("%d", &choice);
+      if (scanf("%d", &choice) != 1) {    // Checking if a non integer value is entered (Invalid Input). If scanf returns the number of successfully read items, i.e. 1 
+        printf("Invalid input, enter a number!\n");
+        while ((ch = getchar()) != '\n' && ch != EOF) {
+            ; // clear the line until '\n' newline is not reached (i.e., end of input from user) or end of file (EOF) is not reached
+        }
+        goto Repeat_x;
+      }
 
       if (choice < 1 || choice > 9) {
         printf("Invalid Choice, try again!\n");
@@ -64,8 +71,15 @@ void main() {
     }
     else if (xo == 'O') {
       Repeat_o:
+      int ch;
       printf("Place O at position: ");
-      scanf("%d", &choice);
+      if (scanf("%d", &choice) != 1) {
+        printf("Invalid input, enter a number!\n");
+        while ((ch = getchar()) != '\n' && ch != EOF) {
+            ;
+        }
+        goto Repeat_x;
+      }
 
       if (choice < 1 || choice > 9) {
         printf("Invalid Choice, try again!\n");
