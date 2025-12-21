@@ -1,6 +1,6 @@
-# Tic-Tac-Toe (C Console Game)
+# Tic-Tac-Toe (Console Game)
 
-A simple 2-player Tic-Tac-Toe game written in C, played in the terminal.  
+A simple 2-player Tic-Tac-Toe game played in the terminal.  
 Players take turns entering positions 1–9 to place `X` or `O` on a 3×3 grid.
 
 ## Features
@@ -29,5 +29,6 @@ Players take turns entering positions 1–9 to place `X` or `O` on a 3×3 grid.
 
 ## Requirements
 
-- C compiler (e.g., GCC, clang, or MSVC)
+- C compiler (e.g., GCC, clang, or MSVC) if using .c file
+- Python 3.8 or higher installed if using .py file
 - Windows console (if using `Sleep` from `windows.h`), or adjust/remove those calls for other platforms.
