@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 int place_XO(char xo, int choice, int array[][3], char new_array[][3]); // place X or O at the chosen place in the tic-tac-toe grid
-void print_ttt(char array[][3]);  // print the edited tic-tac-toe grid after entering X or O
+void print_grid(char array[][3]);  // print the edited tic-tac-toe grid after entering X or O
 char winner(char array[][3]);     // check whether X or O is the winner 
 
 void main() {
@@ -59,7 +59,7 @@ void main() {
         goto Repeat_x;
       }
 
-      print_ttt(new_arr);
+      print_grid(new_arr);
 
       if (winner(new_arr)) {    // Checking if we have a winner already
         printf("The WINNER is %c!", winner(new_arr));
@@ -90,7 +90,7 @@ void main() {
         printf("Position is occupied, try again!\n");
         goto Repeat_o;
       }
-      print_ttt(new_arr);
+      print_grid(new_arr);
 
       if (winner(new_arr)) {    // Checking if we have a winner already
         printf("The WINNER is %c!", winner(new_arr));
@@ -127,7 +127,7 @@ int place_XO(char xo, int choice, int array[][3], char new_array[][3]) {
 }
 // Returns new_array
 
-void print_ttt(char array[][3]) {
+void print_grid(char array[][3]) {
   printf("-------------\n");
   for (int i=0; i<3; i++) {
     for (int j=0; j<3; j++) {
