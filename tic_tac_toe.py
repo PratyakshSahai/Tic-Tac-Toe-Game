@@ -69,7 +69,8 @@ def main():
   while (count < 9):
     while True:
       try:
-        choice = int(input("Place X at position: "))
+        print("Place", xo, "at position: ", end="")
+        choice = int(input())
       except ValueError:
         print("Invalid Input! Enter a number between 1 and 9")
         continue
