@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 int place_XO(char xo, int choice, int array[][3], char new_array[][3]); // place X or O at the chosen place in the tic-tac-toe grid
 void print_grid(char array[][3]);  // print the edited tic-tac-toe grid after entering X or O
@@ -11,6 +12,7 @@ void main() {
 
   int arr[][3] =  {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};    // array (array 1) for chosing the block number
   char new_arr[][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}}; // array in which X and O are updated according to the number of block chosen from array 1
+  char xo = '\0';    // Either X or O (xo is a variable that stores the symbol X or O)
 
   // Loading the game 
   printf("Loading");
@@ -32,73 +34,50 @@ void main() {
     printf("\n-------------\n");
   }
 
-  char xo = 'X';    // Either X or O (xo is a variable that stores the symbol X or O)
+  while (true) {
+    printf("So who plays first? X or O\n");
+    scanf(" %c", &xo);
+
+    if (toupper(xo) == 'X' || toupper(xo) == 'O')
+      break;
+  }
+
   int choice = 0;   // Choice of the position(block) in grid
   int count = 0;    // number of blocks replaced by X and O combined 
   while (count<9) {
-
-    if (xo == 'X') { 
-      Repeat_x:
-      int ch;
-      printf("Place X at position: ");
-      if (scanf("%d", &choice) != 1) {    // Checking if a non integer value is entered (Invalid Input). If scanf returns the number of successfully read items, i.e. 1 
-        printf("Invalid input, enter a number!\n");
-        while ((ch = getchar()) != '\n' && ch != EOF) {
-            ; // clear the line until '\n' newline is not reached (i.e., end of input from user) or end of file (EOF) is not reached
-        }
-        goto Repeat_x;
+    Repeat:
+    int ch;
+    printf("Place %c at position: ", toupper(xo));
+    if (scanf("%d", &choice) != 1) {    // Checking if a non integer value is entered (Invalid Input). If scanf returns the number of successfully read items, i.e. 1 
+      printf("Invalid input, enter a number!\n");
+      while ((ch = getchar()) != '\n' && ch != EOF) {
+          ; // clear the line until '\n' newline is not reached (i.e., end of input from user) or end of file (EOF) is not reached
       }
-
-      if (choice < 1 || choice > 9) {
-        printf("Invalid Choice, try again!\n");
-        goto Repeat_x;
-      }
-
-      if (place_XO(xo, choice, arr, new_arr) == 1) {
-        printf("Position is occupied, try again!\n");
-        goto Repeat_x;
-      }
-
-      print_grid(new_arr);
-
-      if (winner(new_arr)) {    // Checking if we have a winner already
-        printf("The WINNER is %c!", winner(new_arr));
-        break;
-      }
-
-      xo = 'O';   // switch xo from 'X' to 'O'
-
+      goto Repeat;
     }
-    else if (xo == 'O') {
-      Repeat_o:
-      int ch;
-      printf("Place O at position: ");
-      if (scanf("%d", &choice) != 1) {
-        printf("Invalid input, enter a number!\n");
-        while ((ch = getchar()) != '\n' && ch != EOF) {
-            ;
-        }
-        goto Repeat_x;
-      }
 
-      if (choice < 1 || choice > 9) {
-        printf("Invalid Choice, try again!\n");
-        goto Repeat_o;
-      }
-
-      if (place_XO(xo, choice, arr, new_arr) == 1) {
-        printf("Position is occupied, try again!\n");
-        goto Repeat_o;
-      }
-      print_grid(new_arr);
-
-      if (winner(new_arr)) {    // Checking if we have a winner already
-        printf("The WINNER is %c!", winner(new_arr));
-        break;
-      }
-
-      xo = 'X';   // switch xo from 'O' to 'X'
+    if (choice < 1 || choice > 9) {
+      printf("Invalid Choice, try again!\n");
+      goto Repeat;
     }
+
+    if (place_XO(xo, choice, arr, new_arr) == 1) {
+      printf("Position is occupied, try again!\n");
+      goto Repeat;
+    }
+
+    print_grid(new_arr);
+
+    if (winner(new_arr)) {    // Checking if we have a winner already
+      printf("The WINNER is %c!", winner(new_arr));
+      break;
+    }
+
+    if (xo == 'X')
+    xo = 'O';   // switch xo from 'X' to 'O'
+    else 
+    xo = 'X';
+
     count++;
   }
 
