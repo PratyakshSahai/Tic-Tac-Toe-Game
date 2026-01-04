@@ -37,8 +37,9 @@ void main() {
   while (true) {
     printf("So who plays first? X or O\n");
     scanf(" %c", &xo);
+    xo = toupper(xo);
 
-    if (toupper(xo) == 'X' || toupper(xo) == 'O')
+    if (xo == 'X' || xo == 'O')
       break;
   }
 
@@ -47,7 +48,7 @@ void main() {
   while (count<9) {
     Repeat:
     int ch;
-    printf("Place %c at position: ", toupper(xo));
+    printf("Place %c at position: ", xo);
     if (scanf("%d", &choice) != 1) {    // Checking if a non integer value is entered (Invalid Input). If scanf returns the number of successfully read items, i.e. 1 
       printf("Invalid input, enter a number!\n");
       while ((ch = getchar()) != '\n' && ch != EOF) {
